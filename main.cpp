@@ -252,7 +252,7 @@ int main(){
 int searchSize=300;
 const size_t SOMEOBJ_AMOUNT=10000;
 const size_t BUGS_AMOUNT=500;
-	sf::RenderWindow window(sf::VideoMode(1000,1000),"elo");
+	sf::RenderWindow window(sf::VideoMode(1000,1000),"Implementacja drzewa czworkowego w c++ - KochacPolicje");
 	//window.setVerticalSyncEnabled(true);
 	sf::View view(sf::FloatRect(0.f,0.f,1000.f,1000.f));
 	sf::View viewBackground(sf::FloatRect(0.f,0.f,1000.f,1000.f));
@@ -392,12 +392,14 @@ const size_t BUGS_AMOUNT=500;
 					amount++;
 			}
 
-			text.setString(toString(amount)+" z " + toString(SOMEOBJ_AMOUNT)+" \n w trakcie "+toString(elapsed.asMicroseconds())+" mikrosekund \n tryb: drzewo czworkowe \n"+"Rozdeptane robaki: "+toString(bugsSquashed)+" z "+toString(BUGS_AMOUNT));
+			if(bugsSquashed!=500)text.setString(toString(amount)+" z " + toString(SOMEOBJ_AMOUNT)+" \n w trakcie "+toString(elapsed.asMicroseconds())+" mikrosekund \n tryb: drzewo czworkowe \n"+"Rozdeptane robaki: "+toString(bugsSquashed)+" z "+toString(BUGS_AMOUNT));
             window.draw(emitter);
 			window.setView(window.getDefaultView());
 			window.draw(text);
 			emitter.update(elapsed);
-
+            if(bugsSquashed==500){
+                text.setString("Gratulacje, wygrales! ");
+            }
 			window.draw(eraser);
 			auto r=treeObj.search(m);
 			for(auto& p : r){
